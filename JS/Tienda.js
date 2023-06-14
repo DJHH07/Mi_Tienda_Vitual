@@ -58,9 +58,12 @@ console.log(lista);
 const Pintar = () => {
     prod = JSON.parse(localStorage.getItem('hola'))
     saveTodo1()
-    prod.forEach(i => {
-        const newTemplate = document.createElement('div');
-        newTemplate.innerHTML = `
+    newFunction();
+
+    function newFunction() {
+        prod.forEach(i => {
+            const newTemplate = document.createElement('div');
+            newTemplate.innerHTML = `
             <div class="item">
                 <figure>
                     <!-- imagen del producto -->
@@ -78,8 +81,9 @@ const Pintar = () => {
                 <button class="btn-add-cart" id="añadir">Añadir al carrito</button>
             </div>    
        `;
-       lista.appendChild(newTemplate);
-    });
+            lista.appendChild(newTemplate);
+        });
+    }
 }
 
 
