@@ -61,28 +61,50 @@ const Pintar = () => {
     newFunction();
 
     function newFunction() {
-        prod.forEach(i => {
+        for (let i = 0; i < prod.length; i++) {
             const newTemplate = document.createElement('div');
             newTemplate.innerHTML = `
             <div class="item">
                 <figure>
                     <!-- imagen del producto -->
-                    <img src="${i.url}" alt="producto">
+                    <img src="${prod[i].url}" alt="producto">
                 </figure>
                 <!-- informacion del producto -->
                 <div class="info-product">
                 <!-- titulo del producto -->
-                <h2>${i.titulo}</h2>
+                <h2>${prod[i].titulo}</h2>
                 <!-- precio del producto  -->
-                <p class="price"> $${i.precio} </p>
+                <p class="price"> $${prod[i].precio} </p>
                 <!-- cantidad de productos-->
-                <h4 class="Cantidad">${i.cantidad}</h4>
+                <h4 class="Cantidad">${prod[i].cantidad}</h4>
                 <!-- añade al producto -->
                 <button class="btn-add-cart" id="añadir">Añadir al carrito</button>
             </div>    
        `;
             lista.appendChild(newTemplate);
-        });
+        }
+    //     prod.forEach(i => {
+    //         const newTemplate = document.createElement('div');
+    //         newTemplate.innerHTML = `
+    //         <div class="item">
+    //             <figure>
+    //                 <!-- imagen del producto -->
+    //                 <img src="${i.url}" alt="producto">
+    //             </figure>
+    //             <!-- informacion del producto -->
+    //             <div class="info-product">
+    //             <!-- titulo del producto -->
+    //             <h2>${i.titulo}</h2>
+    //             <!-- precio del producto  -->
+    //             <p class="price"> $${i.precio} </p>
+    //             <!-- cantidad de productos-->
+    //             <h4 class="Cantidad">${i.cantidad}</h4>
+    //             <!-- añade al producto -->
+    //             <button class="btn-add-cart" id="añadir">Añadir al carrito</button>
+    //         </div>    
+    //    `;
+    //         lista.appendChild(newTemplate);
+    //     });
     }
 }
 
