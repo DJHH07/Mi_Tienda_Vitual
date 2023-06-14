@@ -177,7 +177,6 @@ productList.addEventListener('click', e => {
 
 
 
-
 //Aca hicimos todo lo de la suma del carrito
 //evento que eliminara los productos que no deseamos en el carrito
 rowProduct.addEventListener('click', e =>{
