@@ -1,5 +1,6 @@
-//import prod from './Productos.js';
-
+// import prod from './Productos.js';
+// let movie =  prod
+// let data = movie.results
 let prod = [
     {
         url: "IMG/Camisas.webp",
@@ -50,64 +51,6 @@ let prod = [
         cantidad: 100
     }
 ]
-
-const lista = document.querySelector(".container-items")
-
-console.log(lista);
-
-const Pintar = () => {
-    prod = JSON.parse(localStorage.getItem('hola'))
-    saveTodo1()
-    newFunction();
-
-    function newFunction() {
-        for (let i = 0; i < prod.length; i++) {
-            const newTemplate = document.createElement('div');
-            newTemplate.innerHTML = `
-            <div class="item">
-                <figure>
-                    <!-- imagen del producto -->
-                    <img src="${prod[i].url}" alt="producto">
-                </figure>
-                <!-- informacion del producto -->
-                <div class="info-product">
-                <!-- titulo del producto -->
-                <h2>${prod[i].titulo}</h2>
-                <!-- precio del producto  -->
-                <p class="price"> $${prod[i].precio} </p>
-                <!-- cantidad de productos-->
-                <h4 class="Cantidad">${prod[i].cantidad}</h4>
-                <!-- añade al producto -->
-                <button class="btn-add-cart" id="añadir">Añadir al carrito</button>
-            </div>    
-       `;
-            lista.appendChild(newTemplate);
-        }
-    //     prod.forEach(i => {
-    //         const newTemplate = document.createElement('div');
-    //         newTemplate.innerHTML = `
-    //         <div class="item">
-    //             <figure>
-    //                 <!-- imagen del producto -->
-    //                 <img src="${i.url}" alt="producto">
-    //             </figure>
-    //             <!-- informacion del producto -->
-    //             <div class="info-product">
-    //             <!-- titulo del producto -->
-    //             <h2>${i.titulo}</h2>
-    //             <!-- precio del producto  -->
-    //             <p class="price"> $${i.precio} </p>
-    //             <!-- cantidad de productos-->
-    //             <h4 class="Cantidad">${i.cantidad}</h4>
-    //             <!-- añade al producto -->
-    //             <button class="btn-add-cart" id="añadir">Añadir al carrito</button>
-    //         </div>    
-    //    `;
-    //         lista.appendChild(newTemplate);
-    //     });
-    }
-}
-
 
 //leemos la clase que contiene el icono del carrito
 const btncart = document.querySelector('.container-cart-icon')
@@ -160,6 +103,38 @@ const saveTodo1 = ()=>{
         return;
     }
     localStorage.setItem('hola', JSON.stringify(prod))
+}
+
+//En esta parte pintamos los productos en el html
+const lista = document.querySelector(".container-items")
+
+console.log(lista);
+
+const Pintar = () => {
+    prod = JSON.parse(localStorage.getItem('hola'))
+    saveTodo1()
+    prod.forEach(i => {
+        const newTemplate = document.createElement('div');
+        newTemplate.innerHTML = `
+            <div class="item">
+                <figure>
+                    <!-- imagen del producto -->
+                    <img src="${i.url}" alt="producto">
+                </figure>
+                <!-- informacion del producto -->
+                <div class="info-product">
+                <!-- titulo del producto -->
+                <h2>${i.titulo}</h2>
+                <!-- precio del producto  -->
+                <p class="price"> $${i.precio} </p>
+                <!-- cantidad de productos-->
+                <h4 class="Cantidad">${i.cantidad}</h4>
+                <!-- añade al producto -->
+                <button class="btn-add-cart" id="añadir">Añadir al carrito</button>
+            </div>    
+       `;
+       lista.appendChild(newTemplate);
+    });
 }
 
 
@@ -289,28 +264,6 @@ carrito.addEventListener('click', e =>{
         //este mensaje confirma si se va a regalizar la compra  
         if (confirm("Productos a comprar\n\n"+mensaje+"\n\nTotal de la compra: "+precio)) {
 
-            //const carritoproduc = document.querySelector('.row-product')
-            // Código que se ejecuta si se hace clic en "Aceptar"
-            //location.reload();
-            
-            
-            //let titulo = "";
-            
-            //const cantidadEnCarrito = carritoproduc.querySelector("svg")
-            //console.log(cantidadEnCarrito);
-            //const c = cantidadEnCarrito.querySelector("span").textContent //cantidad
-            //console.log(c);
-
-            //const cantidad = rowProduct.querySelector("svg")
-            //console.log(cantidad.id);
-
-            // allProducts.forEach(i => {
-            //     //console.log(i.id);
-            //     if(i.id == cantidad.id){
-            //         titulo = i.titulo;
-            //     }
-            // });
-
                 const conteiner = document.getElementsByClassName("item")
                 //console.log(conteiner);
 
@@ -347,9 +300,6 @@ carrito.addEventListener('click', e =>{
 
 //esta funcion mostrara el arreglo en el carrito 
 const showHTML = () => {
-
-    //console.log(JSON.parse(localStorage.getItem('todo')).length);
-    
 
     //limpiando html
     rowProduct.innerHTML = ''
@@ -404,7 +354,11 @@ const showHTML = () => {
 document.addEventListener('DOMContentLoaded', (event)=>{
     console.log("entrada");
     showHTML();
-    Pintar();
+    if( JSON.parse(localStorage.getItem('hola')) === null){
+        saveTodo1()
+        console.log("hola");
+    }
+    Pintar()
 })
 
 
